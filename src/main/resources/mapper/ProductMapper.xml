@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.graduatedesign.mapper.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.graduatedesign.entity.Product">
+        <id column="p_id" jdbcType="VARCHAR" property="id" />
+        <result column="p_name" jdbcType="VARCHAR" property="title" />
+        <result column="p_img" jdbcType="VARCHAR" property="picUrl" />
+        <result column="p_html" jdbcType="VARCHAR" property="detail" />
+        <result column="p_price" jdbcType="VARCHAR" property="price" />
+        <result column="p_salenum" jdbcType="INTEGER" property="salenum" />
+    </resultMap>
+
+<!--    商品列表信息-->
+    <select id="getPage" resultMap="BaseResultMap">
+        select * from product limit #{start},#{end};
+    </select>
+
+<!--    获得商品销量排行榜-->
+    <select id="getPageBySale" resultMap="BaseResultMap">
+        select * from product order by p_salenum DESC limit #{start},#{end};
+    </select>
+</mapper>
